@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Socket.io demo</title>
+    <link rel="stylesheet" href="static/style.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+    
+</head>
+
+
+<body>
+    <section id="app">
+        <link rel="import" href="a.html">
+        <h1>Socket.io beautiful demo</h1>
+        <div class="chat">
+            <div id="demo">
+            </div>
+            <!-- <form id="form" action="">
+                <input type="text" placeholder="Digite aqui!" id="text" name="text" data-emojiable="true" />
+                <button name="sendMessage" onclick="sendMessage()">&#10148;</button>
+            </form> -->
+            <div id="form">
+                <input type="text" placeholder="Digite aqui!" id="text" name="text" data-emojiable="true" />
+                <button name="sendMessage" onclick="sendMessage()">&#10148;</button>
+            </div>
+        </div>
+        <form id="form" action="">
+            <input id="input" autocomplete="off" /><button>Send</button>
+        </form>
+        
+    </section>
+    </script>
+    <script type="text/javascript" src="./userChat.js"></script>
+</body>
+
+</html>

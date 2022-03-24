@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Chakra+Petch:wght@500&family=Fredoka&family=Roboto:wght@100;300&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none; 
+    border:none;
+    scroll-behavior: smooth;
+}
+body {
+    font-family:'Roboto', sans-serif;
+    height:100vh;
+}
+#app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
+#app h1 {
+    margin-bottom:15px;
+}
+
+.chat {
+    width: 500px;
+    position: relative;
+    height: 600px;
+    background-color: #ddd;
+    border: 1px solid #555;
+    border-radius: 10px;
+    padding:2px;
+    
+}
+#demo {
+    width: 100%;
+    height: 95%;
+    padding: 10px;
+    overflow: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    
+}
+.chat-message {
+    /* display: inline-block; */
+    width: fit-content;
+    word-wrap: break-word;
+    padding:5px;
+    border-radius: 10px;
+    margin-bottom: 2px;
+    min-width: 20%;
+    max-width: 70%;
+    white-space: pre-line;
+}
+.received-message {
+    align-self: flex-start;
+    background-color: cornflowerblue;
+    
+}
+.my-message {
+    align-self: flex-end;
+    background-color: rgb(126, 102, 151);
+    flex-wrap: wrap;
+}
+#form {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    display:flex;
+    padding: 0 10px 0 5px;
+    
+}
+#form  input {
+    width: inherit;
+    border: none;
+    background-color:transparent;
+}
+#form  button {
+    border: none;
+    background-color: transparent
+}
