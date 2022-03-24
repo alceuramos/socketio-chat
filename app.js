@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv/config');
 const app = express();
 const http = require('http');
 const cli = require('nodemon/lib/cli');
@@ -49,8 +50,7 @@ io.on('connection', (socket) => {
   
   
 });
-
-
-server.listen(3000, () => {
-  console.log('listening on *:3000');
+const PORT = process.env.PORT | process.env.APP_PORT
+server.listen(PORT, () => {
+  console.info(`listening on *: ${PORT}`);
 });
