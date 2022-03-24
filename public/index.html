@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="static/style.css">
 
     <script src="/socket.io/socket.io.js"></script>
-    
+
 </head>
 
 
@@ -14,15 +14,19 @@
     <section id="app">
         <link rel="import" href="a.html">
         <h1>Socket.io Beautiful Chat App</h1>
-        <div class="chat">
+        <p>Online users: <span id="online"></span></p>
+        <div class="chat" id="chat">
             <div id="demo">
             </div>
-            <div id="form">
+            <div class="form">
                 <input type="text" placeholder="Digite aqui!" id="text" name="text" data-emojiable="true" />
                 <button name="sendMessage" onclick="sendMessage()">&#10148;</button>
             </div>
         </div>
-        
+
+        <div id="form-username">
+            <input type="text" placeholder="Pick your username!" id="username" name="username" />
+        </div>
     </section>
     </script>
     <script type="text/javascript" src="./userChat.js"></script>

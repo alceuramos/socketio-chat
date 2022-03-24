@@ -8,8 +8,8 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-let clients = [] ;
-let messages = [] ;
+let clients = [];
+let messages = [];
 
 app.use(express.static('public'))
 app.get('/', (req, res) => {
@@ -23,32 +23,35 @@ io.on('connection', (socket) => {
   // console.log('added client '+socket.id+' to list');
 
   socket.join('room');
-  
-  socket.broadcast.emit('user_join',{
+
+  socket.broadcast.emit('user_join', {
     online: clients.length,
-    msg: socket.id+' joined',
+    msg: socket.id + ' joined',
   });
-  
-  io.to(socket.id).emit('load_messages',messages.slice(-15));
-  
+
+  // io.to(socket.id).emit('load_messages',messages.slice(-15));
+  io.to(socket.id).emit('join', { online: clients.length });
   // client left
-  socket.on('disconnect', () =>{
+  socket.on('disconnect', () => {
     clients.splice(socket.id, 1);
-    socket.broadcast.emit('user_left',{
+    socket.broadcast.emit('user_left', {
       online: clients.length,
-      msg: socket.id+' left',
+      msg: socket.id + ' left',
     });
   });
-  
+
   socket.on("hello", (arg) => {
     console.log(arg); // world
   });
-  socket.on("send_message",(data)=>{
-    messages.push(data)
-    socket.broadcast.emit('sayForAll',data);
+  socket.on('enter_username', () => {
+    io.to(socket.id).emit('load_messages', messages.slice(-15));
   });
-  
-  
+  socket.on("send_message", (data) => {
+    messages.push(data)
+    socket.broadcast.emit('sayForAll', data);
+  });
+
+
 });
 const PORT = process.env.PORT | process.env.APP_PORT
 server.listen(PORT, () => {

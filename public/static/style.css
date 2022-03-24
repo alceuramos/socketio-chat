@@ -24,6 +24,7 @@ body {
 }
 
 .chat {
+    display:none;
     width: 500px;
     position: relative;
     height: 600px;
@@ -66,7 +67,7 @@ body {
     background-color: rgb(126, 102, 151);
     flex-wrap: wrap;
 }
-#form {
+.form {
     bottom: 0;
     position: absolute;
     width: 100%;
@@ -75,12 +76,23 @@ body {
     padding: 0 10px 0 5px;
     
 }
-#form  input {
+.form input {
     width: inherit;
     border: none;
     background-color:transparent;
 }
-#form  button {
+.form button {
     border: none;
     background-color: transparent
+}
+#form-username {
+    /* background-color: blue; */
+    width: 20%;
+    display: flex;
+    margin: 50px;
+}
+#form-username input {
+    border-bottom: 2px solid black;
+    line-height: 1.5em;
+    width: 100%;
 }
