@@ -33,7 +33,10 @@ socket.on('load_messages', (data) => {
             showRecievedMessage(message);
         }
     }
-})
+});
+socket.on('update_online_users',(clients)=>{
+    updateOnline(clients);
+});
 let sendMessage = function () {
     let inputText = document.getElementById('text');
     let text = inputText.value;
@@ -102,6 +105,7 @@ function updateOnline(clients) {
     let online = document.getElementById("online");
     online.textContent = clients.length;
     let usersOnline = document.getElementById("users-online");
+    usersOnline.innerHTML = '';
     for (client of clients) {
         let newClient = document.createElement('p');
         newClient.textContent = client.username;

@@ -11,6 +11,7 @@ var startServer = function (server) {
     //client join
     io.on('connection', (socket) => {
         console.log('new connection');
+        io.to(socket.id).emit('update_online_users',clients);
 
         
         
