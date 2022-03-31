@@ -10,20 +10,17 @@ socket.on('connect_error', (e) => {
 socket.on('disconnect', () => {
     console.log('disconnected');
 });
-socket.on('join', (msg) => {
+socket.on('join', (data) => {
     console.log('{join}');
-    console.log(msg);
-    updateOnline(msg.online);
+    updateOnline(data.clients);
 });
-socket.on('user_join', (msg) => {
+socket.on('user_join', (data) => {
     console.log('{user_join}');
-    console.log(msg);
-    updateOnline(msg.online);
+    updateOnline(data.clients);
 });
 socket.on('user_left', (data) => {
     console.log('{user_left}');
-    console.log(data);
-    updateOnline(data.online);
+    updateOnline(data.clients);
 });
 socket.on('sayForAll', (data) => {
     showRecievedMessage(data);
@@ -71,7 +68,9 @@ inputUsername.addEventListener('keyup', function (event) {
             username = inputUsername.value;
             document.getElementById('chat').style.display='block';
             socket.emit('enter_username');
-            inputUsername.style.display='none';
+            socket.emit('login',username);
+            // inputUsername.style.display='none'; 
+            inputUsername.parentElement.style.display='none';
         }
     }
 });
@@ -82,7 +81,7 @@ function showSendedMessage(message) {
     newElement.textContent = message.message;
     newElement.classList.add('chat-message', 'my-message');
 
-    document.getElementById("demo").appendChild(newElement);
+    document.getElementById("messageArea").appendChild(newElement);
     scrollDown();
 
 };
@@ -91,16 +90,23 @@ function showRecievedMessage(message) {
     newElement.textContent = message.user + ':\n' + message.message;
 
     newElement.classList.add('chat-message', 'received-message');
-    document.getElementById("demo").appendChild(newElement);
+    document.getElementById("messageArea").appendChild(newElement);
     scrollDown();
 };
 
 function scrollDown() {
-    let demo = document.getElementById("demo");
-    demo.scrollTo(0, demo.scrollHeight)
+    let messageArea = document.getElementById("messageArea");
+    messageArea.scrollTo(0, messageArea.scrollHeight)
 };
-function updateOnline(countOnline) {
+function updateOnline(clients) {
     let online = document.getElementById("online");
-    online.textContent = countOnline;
+    online.textContent = clients.length;
+    let usersOnline = document.getElementById("users-online");
+    for (client of clients) {
+        let newClient = document.createElement('p');
+        newClient.textContent = client.username;
+        usersOnline.appendChild(newClient);
+
+    }
 
 }

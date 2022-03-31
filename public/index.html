@@ -12,11 +12,9 @@
 
 <body>
     <section id="app">
-        <link rel="import" href="a.html">
         <h1>Socket.io Beautiful Chat App</h1>
-        <p>Online users: <span id="online"></span></p>
         <div class="chat" id="chat">
-            <div id="demo">
+            <div id="messageArea">
             </div>
             <div class="form">
                 <input type="text" placeholder="Digite aqui!" id="text" name="text" data-emojiable="true" />
@@ -26,6 +24,9 @@
 
         <div id="form-username">
             <input type="text" placeholder="Pick your username!" id="username" name="username" />
+        </div>
+        <p>Online users: <span id="online"></span></p>
+        <div id="users-online">
         </div>
     </section>
     </script>
