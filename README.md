@@ -1,4 +1,3 @@
-[gif]
 # socketio-chat
 <p>This is a chat app to pratice some JavaScript and SocketIO.</p>
 
@@ -36,5 +35,4 @@ nodemon run
 
 ## To do 
 - [ ] Login authentication
-- [ ] Tests
 - [ ] Tests
