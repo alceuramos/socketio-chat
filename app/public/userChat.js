@@ -111,14 +111,18 @@ function scrollDown() {
 };
 function updateOnline(clients) {
     let online = document.getElementById("online");
-    online.textContent = clients.length;
+    // online.textContent = clients.length;
     let usersOnline = document.getElementById("users-online");
     usersOnline.innerHTML = '';
+    let users = [];
     for (client of clients) {
-        let newClient = document.createElement('p');
-        newClient.textContent = client.username;
-        usersOnline.appendChild(newClient);
+        if (! users.includes(client.username)){
+            users.push(client.username);
+            let newClient = document.createElement('p');
+            newClient.textContent = client.username;
+            usersOnline.appendChild(newClient);
+        }
 
     }
-
+    online.textContent = users.length;
 }
