@@ -3,6 +3,10 @@ var socket = io();
 var username = '';
 socket.on('connect', () => {
     console.log('{connected}');
+    username = sessionStorage.getItem('username');
+    if(username){
+        socket.emit('login',username);
+    }
 });
 socket.on('connect_error', (e) => {
     console.log(e.message)
@@ -12,6 +16,8 @@ socket.on('disconnect', () => {
 });
 socket.on('join', (data) => {
     console.log('{join}');
+    document.getElementById('username').style.display='none';
+    document.getElementById('chat').style.display='block';
     updateOnline(data.clients);
 });
 socket.on('user_join', (data) => {
@@ -72,11 +78,13 @@ inputUsername.addEventListener('keyup', function (event) {
             document.getElementById('chat').style.display='block';
             socket.emit('enter_username');
             socket.emit('login',username);
-            // inputUsername.style.display='none'; 
+            sessionStorage.setItem('username', username);
             inputUsername.parentElement.style.display='none';
         }
     }
 });
+
+
 
 function showSendedMessage(message) {
     let newElement = document.createElement('div');
